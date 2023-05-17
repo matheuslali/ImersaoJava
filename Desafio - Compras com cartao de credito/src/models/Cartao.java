@@ -1,10 +1,8 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
-public class Cartao {
+public class Cartao{
     private String nome;
     private double limite;
     private double saldo;
@@ -37,6 +35,7 @@ public class Cartao {
     public List<Compra> getCompras() {
         return compras;
     }
+
 
 
     public void setCpf(String cpf) {
@@ -87,5 +86,6 @@ public class Cartao {
         }
         return numero.toString().trim();
     }
+
 
 }

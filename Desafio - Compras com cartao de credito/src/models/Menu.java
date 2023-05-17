@@ -1,10 +1,11 @@
 package models;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Menu {
     public static void exibeMenu() {
         var in = new Scanner(System.in);
+        var cartao1 = new Cartao(2500);
         System.out.println("**********************\n");
         System.out.println("Seja bem-vindo a mais um desafio de Java");
         System.out.println("Hoje iremos fazer uma aplicação de compras");
@@ -16,12 +17,11 @@ public class Menu {
         String resp1 = in.nextLine();
 
         if (resp1.equals("sim")) {
-            var cartao1 = new Cartao(2500);
             System.out.println("Digie seu nome completo: ");
             cartao1.setNome(in.nextLine());
             System.out.println("\nDigite seu CPF");
             cartao1.setCpf(in.nextLine());
-            System.out.println("• GERANDO CARTÃO •");
+            System.out.println("\n• GERANDO CARTÃO •");
             System.out.println("**************************");
             System.out.println("Dados do cartão de Credito\n");
             System.out.println("Nome: " + cartao1.getNome());
@@ -46,7 +46,7 @@ public class Menu {
                     System.out.println("Digite o valor do item a ser comprado");
                     valor = in.nextDouble();
                     in.nextLine();
-                    var compra = new Compra(descricao, valor);
+                    Compra compra = new Compra(descricao, valor);
                     var newCompra = cartao1.verificaCompra(compra);
                     if (newCompra) {
                         System.out.println("Compra realizada com sucesso!");
@@ -73,5 +73,13 @@ public class Menu {
         }else {
             System.out.println("Até a proxima!");
         }
+        System.out.println("************************");
+        System.out.println("Compras Realizadas: \n");
+        Collections.sort(cartao1.getCompras());
+        for (Compra c : cartao1.getCompras()){
+            System.out.println("Descrição: "+c.getDescricao()+ " - Valor: R$ "+c.getValor());
+        }
+        System.out.println("\n************************");
     }
+
 }
