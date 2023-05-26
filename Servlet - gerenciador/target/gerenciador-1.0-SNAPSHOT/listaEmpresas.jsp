@@ -1,15 +1,7 @@
-<%@ page import="java.util.List" %>
-<%@ page import="com.example.gerenciador.Empresa" %><%--
-  Created by IntelliJ IDEA.
-  User: MULTIMIDIA
-  Date: 25/05/2023
-  Time: 10:48
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    List<Empresa> lista = (List<Empresa>) request.getAttribute("listaEmpresas");
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <html>
 <head>
     <title>Empresas Cadastradas</title>
@@ -18,12 +10,9 @@
 <h1>Lista de empresas cadastradas:</h1>
 <p>
     <ul>
-    <%
-        for (Empresa empresa: lista){
-        %>
-        <li><%= empresa.getNome() %></li>
-        <%
-    }%>
+        <c:forEach items="${listaEmpresas}" var="empresa">
+            <li>${empresa.nome} - <fmt:formatDate value="${empresa.dataAbertura}" pattern="dd/MM/yyyy"/> </li>
+        </c:forEach>
     </ul>
 </p>
 <a href="/gerenciador">Voltar para o Menu inicial</a>

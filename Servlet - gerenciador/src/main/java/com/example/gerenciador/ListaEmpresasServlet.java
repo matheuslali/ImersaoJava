@@ -17,7 +17,6 @@ public class ListaEmpresasServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         var banco = new Banco();
         List<Empresa> lista = banco.getEmpresas();
-        PrintWriter out = resp.getWriter();
         RequestDispatcher rd = req.getRequestDispatcher("/listaEmpresas.jsp");
         req.setAttribute("listaEmpresas", lista);
         rd.forward(req, resp);
